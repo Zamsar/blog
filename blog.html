@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zamsar.dev - Cloud Engineer Blog</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts - Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc; /* Light Slate 50 */
+            color: #1e293b; /* Slate 900 */
+        }
+        /* Custom scrollbar for aesthetic */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #e2e8f0; /* Light Slate 200 */
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #94a3b8; /* Slate 400 */
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #64748b; /* Slate 500 */
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col">
+
+    <!-- Header & Navigation -->
+    <header class="bg-gray-800 text-white p-4 shadow-lg">
+        <div class="container mx-auto flex justify-between items-center flex-wrap">
+            <a href="#" class="text-3xl font-bold tracking-tight rounded-md px-2 py-1 transition duration-300 ease-in-out hover:bg-gray-700">Zamsar.dev</a>
+            <nav class="flex items-center space-x-4 mt-4 md:mt-0">
+                <a href="#home" class="text-lg font-medium hover:text-blue-400 transition duration-200 rounded-md px-3 py-1 hover:bg-gray-700">Home</a>
+                <a href="#blog" class="text-lg font-medium hover:text-blue-400 transition duration-200 rounded-md px-3 py-1 hover:bg-gray-700">Blog</a>
+                <a href="#about" class="text-lg font-medium hover:text-blue-400 transition duration-200 rounded-md px-3 py-1 hover:bg-gray-700">About</a>
+                <a href="#contact" class="text-lg font-medium hover:text-blue-400 transition duration-200 rounded-md px-3 py-1 hover:bg-gray-700">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content Area -->
+    <main class="flex-grow">
+
+        <!-- Hero Section -->
+        <section id="home" class="bg-gradient-to-r from-blue-700 to-indigo-800 text-white py-20 px-4 text-center shadow-inner rounded-b-xl mb-12">
+            <div class="container mx-auto max-w-4xl">
+                <h1 class="text-5xl md:text-6xl font-extrabold mb-4 leading-tight">
+                    Your Gateway to Cloud Engineering Mastery
+                </h1>
+                <p class="text-xl md:text-2xl mb-8 opacity-90">
+                    Dive deep into Azure, DevOps, and scalable cloud solutions with Zamsar.dev.
+                    Sharing insights, tutorials, and real-world experiences.
+                </p>
+                <a href="#blog" class="bg-white text-blue-700 hover:bg-blue-100 px-8 py-3 rounded-full text-lg font-semibold shadow-xl transition duration-300 ease-in-out transform hover:scale-105">
+                    Explore My Blog Posts
+                </a>
+            </div>
+        </section>
+
+        <!-- Recent Blog Posts Section -->
+        <section id="blog" class="container mx-auto px-4 py-12">
+            <h2 class="text-4xl font-bold text-center mb-10 text-gray-800">Latest Insights</h2>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Blog Post 1 -->
+                <article class="bg-white rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300 overflow-hidden">
+                    <img src="https://placehold.co/600x350/E0E7FF/4338CA?text=Azure+DevOps" alt="Azure DevOps Pipeline" class="w-full h-48 object-cover rounded-t-xl">
+                    <div class="p-6">
+                        <h3 class="text-2xl font-semibold text-gray-900 mb-3">Mastering CI/CD with Azure DevOps Pipelines</h3>
+                        <p class="text-gray-600 mb-4 text-sm leading-relaxed">
+                            A comprehensive guide to setting up robust Continuous Integration and Continuous Deployment pipelines in Azure DevOps for your cloud applications.
+                        </p>
+                        <a href="#" class="text-blue-600 hover:text-blue-800 font-medium text-lg flex items-center group">
+                            Read More
+                            <svg class="w-5 h-5 ml-1 transition-transform duration-200 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+                        </a>
+                    </div>
+                </article>
+
+                <!-- Blog Post 2 -->
+                <article class="bg-white rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300 overflow-hidden">
+                    <img src="https://placehold.co/600x350/D1FAE5/065F46?text=Kubernetes" alt="Kubernetes Cluster" class="w-full h-48 object-cover rounded-t-xl">
+                    <div class="p-6">
+                        <h3 class="text-2xl font-semibold text-gray-900 mb-3">Demystifying Kubernetes: A Cloud Engineer's Perspective</h3>
+                        <p class="text-gray-600 mb-4 text-sm leading-relaxed">
+                            Breaking down the complexities of Kubernetes for cloud professionals. Learn about pods, deployments, services, and scaling in the cloud.
+                        </p>
+                        <a href="#" class="text-blue-600 hover:text-blue-800 font-medium text-lg flex items-center group">
+                            Read More
+                            <svg class="w-5 h-5 ml-1 transition-transform duration-200 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+                        </a>
+                    </div>
+                </article>
+
+                <!-- Blog Post 3 -->
+                <article class="bg-white rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300 overflow-hidden">
+                    <img src="https://placehold.co/600x350/FFFBEB/92400E?text=Terraform+Azure" alt="Terraform Code" class="w-full h-48 object-cover rounded-t-xl">
+                    <div class="p-6">
+                        <h3 class="text-2xl font-semibold text-gray-900 mb-3">Infrastructure as Code: Terraform on Azure</h3>
+                        <p class="text-gray-600 mb-4 text-sm leading-relaxed">
+                            Automate your Azure infrastructure deployment with Terraform. A step-by-step tutorial on writing and applying your first HCL configurations.
+                        </p>
+                        <a href="#" class="text-blue-600 hover:text-blue-800 font-medium text-lg flex items-center group">
+                            Read More
+                            <svg class="w-5 h-5 ml-1 transition-transform duration-200 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+                        </a>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <!-- About Me Section -->
+        <section id="about" class="bg-gray-100 py-16 px-4 shadow-inner rounded-xl mx-auto container my-12">
+            <div class="flex flex-col md:flex-row items-center justify-center gap-10">
+                <div class="flex-shrink-0">
+                    <img src="https://placehold.co/250x250/C7D2FE/4F46E5?text=Zamsar" alt="Zamsar Profile Picture" class="rounded-full shadow-lg border-4 border-blue-300 w-48 h-48 md:w-64 md:h-64 object-cover">
+                </div>
+                <div class="text-center md:text-left max-w-2xl">
+                    <h2 class="text-4xl font-bold text-gray-800 mb-4">About Zamsar</h2>
+                    <p class="text-gray-700 text-lg leading-relaxed mb-4">
+                        Hello! I'm Zamsar, a passionate Cloud Engineer with extensive experience in architecting,
+                        deploying, and managing robust solutions on Azure. My journey in the cloud space
+                        has equipped me with deep insights into DevOps practices, infrastructure as code,
+                        containerization, and scalable cloud infrastructure.
+                    </p>
+                    <p class="text-gray-700 text-lg leading-relaxed">
+                        Through Zamsar.dev, I aim to share practical tutorials, best practices, and lessons learned
+                        from real-world cloud projects. Whether you're a budding cloud enthusiast or a seasoned
+                        engineer, I hope my content helps you navigate the exciting world of cloud computing.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="container mx-auto px-4 py-12">
+            <h2 class="text-4xl font-bold text-center mb-10 text-gray-800">Get in Touch</h2>
+            <div class="max-w-xl mx-auto bg-white p-8 rounded-xl shadow-lg">
+                <p class="text-gray-700 text-lg text-center mb-6">
+                    Have a question, a topic suggestion, or just want to connect?
+                    Feel free to reach out!
+                </p>
+                <form class="space-y-6">
+                    <div>
+                        <label for="name" class="block text-gray-700 text-sm font-bold mb-2">Name</label>
+                        <input type="text" id="name" name="name" class="shadow-sm appearance-none border rounded-lg w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent" placeholder="Your Name">
+                    </div>
+                    <div>
+                        <label for="email" class="block text-gray-700 text-sm font-bold mb-2">Email</label>
+                        <input type="email" id="email" name="email" class="shadow-sm appearance-none border rounded-lg w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent" placeholder="your.email@example.com">
+                    </div>
+                    <div>
+                        <label for="message" class="block text-gray-700 text-sm font-bold mb-2">Message</label>
+                        <textarea id="message" name="message" rows="6" class="shadow-sm appearance-none border rounded-lg w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-y" placeholder="Your message..."></textarea>
+                    </div>
+                    <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-4 rounded-lg shadow-md transition duration-300 ease-in-out transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
+                        Send Message
+                    </button>
+                </form>
+                <p class="text-center text-sm text-gray-500 mt-6">
+                    (Note: This is a static HTML page. For a functional contact form, you would integrate a backend service like Azure Functions.)
+                </p>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-8 px-4 mt-12 rounded-t-xl shadow-inner">
+        <div class="container mx-auto flex flex-col md:flex-row justify-between items-center text-center md:text-left">
+            <p class="text-md mb-4 md:mb-0">&copy; 2025 Zamsar.dev. All rights reserved.</p>
+            <div class="flex space-x-6">
+                <a href="#" class="text-gray-400 hover:text-blue-400 transition duration-200 text-sm">Privacy Policy</a>
+                <a href="#" class="text-gray-400 hover:text-blue-400 transition duration-200 text-sm">Terms of Service</a>
+                <!-- You can add social media icons here with links -->
+                <!-- Example: <a href="https://linkedin.com/in/zamsar" class="text-gray-400 hover:text-blue-400 transition duration-200"><img src="linkedin-icon.svg" alt="LinkedIn" class="w-6 h-6 inline-block"></a> -->
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
