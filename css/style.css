@@ -1,0 +1,69 @@
+/* Custom styles and overrides for a cleaner developer theme */
+/* This file is linked in index.html */
+
+/* General body styling - mostly handled by Tailwind classes in HTML */
+body {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* Timeline specific styles */
+.wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center the timeline column */
+    padding-bottom: 2rem; /* Add some padding at the bottom */
+}
+
+/* Timeline line */
+.wrap > .border-2-2 {
+    left: 50%; /* Position the line in the center */
+    transform: translateX(-1px); /* Fine-tune center alignment */
+}
+
+/* Adjust timeline item positioning for responsiveness */
+@media (min-width: 768px) { /* md breakpoint and up */
+    .right-timeline {
+        justify-content: flex-end; /* Push content to the right */
+    }
+
+    .left-timeline {
+        justify-content: flex-start; /* Push content to the left */
+    }
+
+    .right-timeline > .order-1 {
+        margin-right: 2rem; /* Space between card and line */
+        text-align: right; /* Text aligns right */
+    }
+
+    .left-timeline > .order-1 {
+        margin-left: 2rem; /* Space between card and line */
+        text-align: left; /* Text aligns left */
+    }
+}
+
+/* Mobile specific adjustments for timeline */
+@media (max-width: 767px) { /* Below md breakpoint */
+    .wrap {
+        padding: 0 1rem; /* Adjust padding for mobile */
+    }
+    .wrap > .border-2-2 {
+        left: 20px; /* Move line to the left for mobile */
+        transform: translateX(0);
+    }
+    .right-timeline, .left-timeline {
+        flex-direction: row; /* Ensure row direction for mobile */
+        justify-content: flex-start;
+        width: 100%; /* Full width */
+    }
+    .right-timeline > .order-1, .left-timeline > .order-1 {
+        width: calc(100% - 40px); /* Adjust card width relative to line */
+        margin-left: 20px; /* Space from line */
+        text-align: left;
+    }
+    .right-timeline > .z-20, .left-timeline > .z-20 {
+        position: absolute;
+        left: 10px; /* Align circle with the line */
+        z-index: 10; /* Ensure it's above the card */
+    }
+}
