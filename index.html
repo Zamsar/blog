@@ -10,117 +10,53 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/css/style.css">
 </head>
-<body class="min-h-screen flex flex-col">
+<body class="min-h-screen flex flex-col bg-gray-950 text-gray-200">
 
-    <header class="bg-gray-900 text-white p-6 border-b border-purple-800">
-        <div class="container mx-auto flex justify-between items-center flex-wrap">
-            <a href="#" class="text-4xl font-extrabold tracking-wide text-purple-400">Zamir.dev</a>
-            <nav class="flex items-center space-x-6 mt-4 md:mt-0">
-                <a href="#timeline" class="text-lg font-medium text-gray-300 hover:text-purple-400 transition duration-200">Timeline</a>
-                <a href="#about" class="text-lg font-medium text-gray-300 hover:text-purple-400 transition duration-200">About</a>
-                <a href="#contact" class="text-lg font-medium text-gray-300 hover:text-purple-400 transition duration-200">Contact</a>
+    <header class="bg-gray-900 text-white p-6 border-b border-purple-800 fixed w-full z-30">
+        <div class="container mx-auto flex justify-between items-center">
+            <a href="#" class="text-3xl md:text-4xl font-extrabold tracking-wide text-purple-400">Zamir.dev</a>
+            <nav class="space-x-4 md:space-x-6">
+                <a href="#timeline" class="text-base md:text-lg font-medium text-gray-300 hover:text-purple-400 transition duration-200">Timeline</a>
+                <a href="#about" class="text-base md:text-lg font-medium text-gray-300 hover:text-purple-400 transition duration-200">About</a>
+                <a href="#contact" class="text-base md:text-lg font-medium text-gray-300 hover:text-purple-400 transition duration-200">Contact</a>
             </nav>
         </div>
     </header>
 
-    <main class="flex-grow bg-gray-950 text-gray-200">
-
-        <section class="py-24 px-4 text-center bg-gradient-to-br from-gray-950 to-black rounded-b-2xl mb-16">
+    <main class="flex-grow pt-24"> <section class="py-24 px-4 text-center bg-gradient-to-br from-gray-950 to-black rounded-b-2xl mb-16">
             <div class="container mx-auto max-w-3xl">
-                <h1 class="text-6xl md:text-7xl font-bold mb-4 leading-tight text-purple-400">
-                    Developer Log
+                <h1 class="text-5xl md:text-7xl font-bold mb-4 leading-tight text-purple-400">
+                    Dev Log
                 </h1>
-                <p class="text-xl md:text-2xl text-gray-400">
-                    Chronicles of a Cloud Engineer. Projects, learnings, insights.
+                <p class="text-lg md:text-2xl text-gray-400">
+                    Cloud Engineer Chronicles. Projects. Learnings. Insights.
                 </p>
             </div>
         </section>
 
         <section id="timeline" class="container mx-auto px-4 py-16">
-            <h2 class="text-5xl font-bold text-center mb-16 text-gray-100">My Journey</h2>
+            <h2 class="text-4xl md:text-5xl font-bold text-center mb-16 text-gray-100">My Journey</h2>
 
             <div class="relative wrap overflow-hidden p-10 h-full">
-                <div class="border-2-2 absolute border-opacity-20 border-purple-700 h-full border" style="left: 50%"></div>
-
-                <div class="mb-8 flex justify-between items-center w-full right-timeline">
-                    <div class="order-1 w-5/12"></div>
-                    <div class="z-20 flex items-center order-1 bg-purple-700 shadow-xl w-8 h-8 rounded-full">
-                        <h1 class="mx-auto font-semibold text-lg text-white">1</h1>
-                    </div>
-                    <div class="order-1 bg-gray-800 rounded-lg shadow-xl w-5/12 px-6 py-4 border border-purple-600 hover:border-purple-400 transition duration-300">
-                        <h3 class="mb-3 font-bold text-gray-100 text-xl">Azure Static Web Apps Deployment</h3>
-                        <p class="text-sm leading-snug tracking-wide text-gray-300 text-opacity-100">
-                            First successful deployment of a static site using Azure SWA and GitHub Actions. Seamless CI/CD.
-                        </p>
-                    </div>
-                </div>
-
-                <div class="mb-8 flex justify-between flex-row-reverse items-center w-full left-timeline">
-                    <div class="order-1 w-5/12"></div>
-                    <div class="z-20 flex items-center order-1 bg-purple-700 shadow-xl w-8 h-8 rounded-full">
-                        <h1 class="mx-auto font-semibold text-lg text-white">2</h1>
-                    </div>
-                    <div class="order-1 bg-gray-800 rounded-lg shadow-xl w-5/12 px-6 py-4 border border-purple-600 hover:border-purple-400 transition duration-300">
-                        <h3 class="mb-3 font-bold text-gray-100 text-xl">Exploring Azure Functions</h3>
-                        <p class="text-sm leading-snug tracking-wide text-gray-300 text-opacity-100">
-                            Implemented serverless functions for a contact form. Initial dive into consumption-based APIs.
-                        </p>
-                    </div>
-                </div>
-
-                <div class="mb-8 flex justify-between items-center w-full right-timeline">
-                    <div class="order-1 w-5/12"></div>
-                    <div class="z-20 flex items-center order-1 bg-purple-700 shadow-xl w-8 h-8 rounded-full">
-                        <h1 class="mx-auto font-semibold text-lg text-white">3</h1>
-                    </div>
-                    <div class="order-1 bg-gray-800 rounded-lg shadow-xl w-5/12 px-6 py-4 border border-purple-600 hover:border-purple-400 transition duration-300">
-                        <h3 class="mb-3 font-bold text-gray-100 text-xl">Containerizing My Dev Environment</h3>
-                        <p class="text-sm leading-snug tracking-wide text-gray-300 text-opacity-100">
-                            Set up Docker containers for local development. Streamlining project onboarding.
-                        </p>
-                    </div>
-                </div>
-
-                <div class="mb-8 flex justify-between flex-row-reverse items-center w-full left-timeline">
-                    <div class="order-1 w-5/12"></div>
-                    <div class="z-20 flex items-center order-1 bg-purple-700 shadow-xl w-8 h-8 rounded-full">
-                        <h1 class="mx-auto font-semibold text-lg text-white">4</h1>
-                    </div>
-                    <div class="order-1 bg-gray-800 rounded-lg shadow-xl w-5/12 px-6 py-4 border border-purple-600 hover:border-purple-400 transition duration-300">
-                        <h3 class="mb-3 font-bold text-gray-100 text-xl">Infrastructure as Code: Bicep</h3>
-                        <p class="text-sm leading-snug tracking-wide text-gray-300 text-opacity-100">
-                            Migrated resource deployments from ARM templates to cleaner Azure Bicep code.
-                        </p>
-                    </div>
-                </div>
+                <div class="border-2 absolute border-opacity-20 border-purple-700 h-full border-l-2 timeline-line"></div>
                 
-                <div class="mb-8 flex justify-between items-center w-full right-timeline">
-                    <div class="order-1 w-5/12"></div>
-                    <div class="z-20 flex items-center order-1 bg-purple-700 shadow-xl w-8 h-8 rounded-full">
-                        <h1 class="mx-auto font-semibold text-lg text-white">5</h1>
+                <div id="timeline-content" class="w-full">
                     </div>
-                    <div class="order-1 bg-gray-800 rounded-lg shadow-xl w-5/12 px-6 py-4 border border-purple-600 hover:border-purple-400 transition duration-300">
-                        <h3 class="mb-3 font-bold text-gray-100 text-xl">Cloud Security Fundamentals</h3>
-                        <p class="text-sm leading-snug tracking-wide text-gray-300 text-opacity-100">
-                            Deepened understanding of Azure security controls and best practices for compliance.
-                        </p>
-                    </div>
-                </div>
 
-                </div>
+            </div>
         </section>
 
         <section id="about" class="bg-gray-900 py-16 px-4 rounded-xl mx-auto container my-16 border border-purple-800 shadow-xl">
             <div class="max-w-3xl mx-auto text-center">
-                <h2 class="text-5xl font-bold text-gray-100 mb-8 text-purple-400">About Zamir</h2>
+                <h2 class="text-4xl md:text-5xl font-bold text-gray-100 mb-8 text-purple-400">About Zamir</h2>
                 <p class="text-gray-300 text-lg leading-relaxed">
-                    I'm Zamir, a Cloud Engineer focused on building and optimizing resilient systems in Azure. This log chronicles my projects, insights, and continuous learning in cloud technologies.
+                    Cloud Engineer. Building. Optimizing. Securing. Azure focus. My log: projects, insights, continuous learning.
                 </p>
             </div>
         </section>
 
         <section id="contact" class="container mx-auto px-4 py-12">
-            <h2 class="text-5xl font-bold text-center mb-16 text-gray-100 text-purple-400">Connect</h2>
+            <h2 class="text-4xl md:text-5xl font-bold text-center mb-16 text-gray-100 text-purple-400">Connect</h2>
             <div class="max-w-xl mx-auto bg-gray-900 p-10 rounded-xl shadow-lg border border-purple-800">
                 <p class="text-gray-300 text-lg text-center mb-8">
                     Questions? Ideas? Let's connect.
