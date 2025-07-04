@@ -1,0 +1,44 @@
+[
+    {
+        "id": 1,
+        "title": "Azure SWA: Setup",
+        "description": "Static Web Apps. Fast CI/CD. Live deployment.",
+        "date": "July 2025",
+        "link": "#"
+    },
+    {
+        "id": 2,
+        "title": "Functions: API Integration",
+        "description": "Serverless APIs. Contact form. Backend logic.",
+        "date": "June 2025",
+        "link": "#"
+    },
+    {
+        "id": 3,
+        "title": "Containerizing Dev Env",
+        "description": "Docker. Local setup. Streamlined workflow.",
+        "date": "May 2025",
+        "link": "#"
+    },
+    {
+        "id": 4,
+        "title": "IaC: Azure Bicep",
+        "description": "Infrastructure as Code. Clean ARM templates. Automation.",
+        "date": "April 2025",
+        "link": "#"
+    },
+    {
+        "id": 5,
+        "title": "Cloud Security Basics",
+        "description": "Azure security controls. Best practices. Compliance focus.",
+        "date": "March 2025",
+        "link": "#"
+    },
+    {
+        "id": 6,
+        "title": "Monitoring Cloud Apps",
+        "description": "Observability. Azure Monitor. Performance insights.",
+        "date": "Feb 2025",
+        "link": "#"
+    }
+]
