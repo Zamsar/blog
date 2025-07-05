@@ -38,7 +38,7 @@ jobs:
         id: builddeploy
         uses: azure/static-web-apps-deploy@v1
         with:
-          azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN }} # This secret is automatically created by Azure
+          azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN_LEMON_GLACIER_09F3D0303 }} # This secret is automatically created by Azure
           repo_token: ${{ secrets.GITHUB_TOKEN }} # Used for Github integrations (i.e. PR comments)
           action: "upload"
           # IMPORTANT: These paths are relative to the root of your GitHub repository
