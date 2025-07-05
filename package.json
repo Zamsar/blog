@@ -1,0 +1,23 @@
+{
+  "name": "zamir-dev-blog",
+  "version": "1.0.0",
+  "description": "Zamir's personal developer blog and log",
+  "main": "build.js",
+  "scripts": {
+    "build": "node build.js"
+  },
+  "keywords": [
+    "static-site",
+    "blog",
+    "azure",
+    "cloud-engineer",
+    "devops"
+  ],
+  "author": "Zamir Sarvari",
+  "license": "MIT",
+  "dependencies": {
+    "fs-extra": "^11.2.0",
+    "markdown-it": "^14.1.0",
+    "gray-matter": "^4.0.3"
+  }
+}
