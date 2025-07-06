@@ -61,10 +61,12 @@
 
             .career-timeline-entry:nth-child(odd) .career-timeline-card {
                 margin-right: 60px; /* Space from center line */
+                margin-left: 0;
                 text-align: right;
             }
             .career-timeline-entry:nth-child(even) .career-timeline-card {
                 margin-left: 60px; /* Space from center line */
+                margin-right: 0;
                 text-align: left;
             }
 
@@ -104,7 +106,7 @@
 
     <!-- HEADER_PLACEHOLDER -->
 
-    <main class="flex-grow pt-24 container mx-auto px-4 py-16 max-w-4xl">
+    <main class="flex-grow pt-28 md:pt-24 container mx-auto px-4 py-16 max-w-4xl"> <!-- Adjusted padding -->
         <section class="bg-gray-900 p-8 md:p-12 rounded-lg shadow-xl border border-purple-800 mb-16">
             <h1 class="text-4xl md:text-5xl font-bold text-center mb-8 text-purple-400">My Career Journey</h1>
             <p class="text-gray-300 text-lg leading-relaxed mb-8 text-center">
@@ -139,7 +141,7 @@
                         <p class="text-base leading-snug tracking-wide text-gray-300">
                             Experience with Domain Name System (DNS), Cloud Services, and other core cloud infrastructure tasks.
                         </p>
-                    </div>
+                    </p>
                 </div>
 
                 <!-- Career Timeline Item 3: Cloud Consultant -->
@@ -169,8 +171,6 @@
                         </p>
                     </div>
                 </div>
-
-                <!-- Add more career timeline items as needed following the same structure -->
 
             </div>
         </section>

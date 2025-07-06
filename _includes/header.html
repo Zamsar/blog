@@ -1,7 +1,19 @@
-<header class="bg-gray-900 text-white p-6 border-b border-purple-800 fixed w-full z-30">
-    <div class="container mx-auto flex justify-between items-center">
-        <a href="/" class="text-3xl md:text-4xl font-extrabold tracking-wide text-purple-400">Zamir.dev</a>
-        <nav class="space-x-4 md:space-x-6">
+<header class="bg-gray-900 text-white p-4 md:p-6 border-b border-purple-800 fixed w-full z-30">
+    <div class="container mx-auto flex flex-col md:flex-row justify-between items-center">
+        <!-- Profile & Name (Left side on desktop, top-left on mobile) -->
+        <div class="flex items-center space-x-3 mb-3 md:mb-0">
+            <img src="/images/profile.jpg" alt="Zamir Sarvari Profile" class="rounded-full w-10 h-10 md:w-12 md:h-12 border-2 border-purple-600 object-cover">
+            <a href="/" class="text-xl md:text-2xl font-extrabold tracking-wide text-purple-400 hover:text-purple-300 transition-colors duration-200">Zamir Sarvari</a>
+            <!-- LinkedIn Icon (using inline SVG for simplicity and no external dependencies like Font Awesome) -->
+            <a href="https://www.linkedin.com/in/zamir-sarvari" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-blue-400 transition-colors duration-200">
+                <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM4 9H0v12h4zM2 6a2 2 0 110-4 2 2 0 010 4z" />
+                </svg>
+            </a>
+        </div>
+
+        <!-- Navigation (Right side on desktop, bottom-right on mobile) -->
+        <nav class="flex space-x-4 md:space-x-6">
             <a href="/#timeline" class="text-base md:text-lg font-medium text-gray-300 hover:text-purple-400 transition duration-200">Timeline</a>
             <a href="/all-posts.html" class="text-base md:text-lg font-medium text-gray-300 hover:text-purple-400 transition duration-200">All Posts</a>
             <a href="/about.html" class="text-base md:text-lg font-medium text-gray-300 hover:text-purple-400 transition duration-200">About</a>
