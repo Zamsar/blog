@@ -1,20 +1,25 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Zamir - Dev Log</title>
+    <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts - Inter -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Custom CSS -->
     <link rel="stylesheet" href="/css/style.css">
 </head>
 <body class="min-h-screen flex flex-col bg-gray-950 text-gray-200">
 
+    <!-- Header -->
     <header class="bg-gray-900 text-white p-6 border-b border-purple-800 fixed w-full z-30">
         <div class="container mx-auto flex justify-between items-center">
-            <a href="#" class="text-3xl md:text-4xl font-extrabold tracking-wide text-purple-400">Zamir.dev</a>
+            <a href="/" class="text-3xl md:text-4xl font-extrabold tracking-wide text-purple-400">Zamir.dev</a>
             <nav class="space-x-4 md:space-x-6">
                 <a href="#timeline" class="text-base md:text-lg font-medium text-gray-300 hover:text-purple-400 transition duration-200">Timeline</a>
                 <a href="#about" class="text-base md:text-lg font-medium text-gray-300 hover:text-purple-400 transition duration-200">About</a>
@@ -23,7 +28,11 @@
         </div>
     </header>
 
-    <main class="flex-grow pt-24"> <section class="py-24 px-4 text-center bg-gradient-to-br from-gray-950 to-black rounded-b-2xl mb-16">
+    <!-- Main Content Area -->
+    <main class="flex-grow pt-24"> <!-- Added pt-24 to offset fixed header -->
+
+        <!-- Hero Section - Minimalistic Intro -->
+        <section class="py-24 px-4 text-center bg-gradient-to-br from-gray-950 to-black rounded-b-2xl mb-16">
             <div class="container mx-auto max-w-3xl">
                 <h1 class="text-5xl md:text-7xl font-bold mb-4 leading-tight text-purple-400">
                     Dev Log
@@ -34,27 +43,37 @@
             </div>
         </section>
 
+        <!-- Timeline Section -->
         <section id="timeline" class="container mx-auto px-4 py-16">
             <h2 class="text-4xl md:text-5xl font-bold text-center mb-16 text-gray-100">My Journey</h2>
 
             <div class="relative wrap overflow-hidden p-10 h-full">
+                <!-- Timeline vertical line (desktop) -->
                 <div class="border-2 absolute border-opacity-20 border-purple-700 h-full border-l-2 timeline-line"></div>
                 
+                <!-- Posts will be injected here by JavaScript -->
                 <div id="timeline-content" class="w-full">
-                    </div>
+                    <!-- JavaScript will populate this div -->
+                </div>
 
             </div>
         </section>
 
+        <!-- About Section (Minimal) -->
         <section id="about" class="bg-gray-900 py-16 px-4 rounded-xl mx-auto container my-16 border border-purple-800 shadow-xl">
             <div class="max-w-3xl mx-auto text-center">
+                <img src="/images/profile.jpg" alt="Zamir Sarvari Profile" class="rounded-full w-40 h-40 mx-auto mb-8 border-4 border-purple-600 shadow-lg object-cover">
                 <h2 class="text-4xl md:text-5xl font-bold text-gray-100 mb-8 text-purple-400">About Zamir</h2>
                 <p class="text-gray-300 text-lg leading-relaxed">
                     Cloud Engineer. Building. Optimizing. Securing. Azure focus. My log: projects, insights, continuous learning.
                 </p>
+                <a href="https://www.linkedin.com/in/zamir-sarvari" target="_blank" rel="noopener noreferrer" class="inline-block mt-8 bg-purple-600 hover:bg-purple-700 text-white font-bold py-3 px-6 rounded-full shadow-md transition duration-300 ease-in-out">
+                    Connect on LinkedIn
+                </a>
             </div>
         </section>
 
+        <!-- Contact Section (Minimal) -->
         <section id="contact" class="container mx-auto px-4 py-12">
             <h2 class="text-4xl md:text-5xl font-bold text-center mb-16 text-gray-100 text-purple-400">Connect</h2>
             <div class="max-w-xl mx-auto bg-gray-900 p-10 rounded-xl shadow-lg border border-purple-800">
@@ -80,6 +99,7 @@
 
     </main>
 
+    <!-- Footer -->
     <footer class="bg-gray-900 text-gray-400 py-10 px-4 mt-16 rounded-t-2xl shadow-inner border-t border-purple-800">
         <div class="container mx-auto flex flex-col md:flex-row justify-between items-center text-center md:text-left">
             <p class="text-md mb-4 md:mb-0">&copy; 2025 Zamir. All rights reserved.</p>
@@ -90,6 +110,7 @@
         </div>
     </footer>
 
+    <!-- Custom JavaScript -->
     <script src="/js/script.js"></script>
 
 </body>
