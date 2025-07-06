@@ -33,111 +33,209 @@ body {
     transform: translateY(0);
 }
 
-/* Timeline container and line */
+/* Blog Posts Timeline (Homepage) */
 .wrap {
-    position: relative; /* Needed for absolute positioning of the line */
-    padding-left: 0; /* Reset default padding */
+    position: relative;
+    padding-left: 0;
     padding-right: 0;
 }
 
 .timeline-line {
-    /* Mobile: Line on the left */
-    left: 20px; /* Position of the line */
-    transform: translateX(-1px); /* Fine-tune alignment */
-    width: 2px; /* Thickness of the line */
+    left: 20px; /* Mobile: Line on the left */
+    transform: translateX(-1px);
+    width: 2px;
 }
 
-/* Timeline item structure */
 .timeline-entry {
     display: flex;
     align-items: center;
-    margin-bottom: 2.5rem; /* Space between items */
-    position: relative; /* For z-index and circle positioning */
+    margin-bottom: 2.5rem;
+    position: relative;
 }
 
-/* Timeline circle (the number indicator) */
 .timeline-circle {
     position: absolute;
-    left: 20px; /* Align with the line on mobile */
-    top: 0; /* Position at the top of the item container */
-    transform: translate(-50%, -50%); /* Center vertically on the line */
-    z-index: 20; /* Ensure it's above the line and card */
-    background-color: #8B5CF6; /* Purple background */
-    border: 2px solid #0F172A; /* Dark border to stand out from line */
+    left: 20px;
+    top: 0;
+    transform: translate(-50%, -50%);
+    z-index: 20;
+    background-color: #8B5CF6;
+    border: 2px solid #0F172A;
+    border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 40px; /* Size of the circle */
+    width: 40px;
     height: 40px;
-    border-radius: 50%;
     font-weight: bold;
     color: white;
-    font-size: 1.125rem; /* text-lg */
+    font-size: 1.125rem;
 }
 
-/* Post card styling */
 .timeline-card {
-    background-color: #1E293B; /* Darker gray for card */
-    border: 1px solid #475569; /* Slate 600 border */
-    border-radius: 0.5rem; /* rounded-lg */
-    padding: 1.5rem; /* p-6 */
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* subtle shadow */
-    width: calc(100% - 60px); /* Adjust width to make space for circle/line */
-    margin-left: 60px; /* Push card to the right of the line/circle */
+    background-color: #1E293B;
+    border: 1px solid #475569;
+    border-radius: 0.5rem;
+    padding: 1.5rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    width: calc(100% - 60px);
+    margin-left: 60px;
     transition: all 0.3s ease-in-out;
 }
 
 .timeline-card:hover {
-    border-color: #A78BFA; /* Purple 400 on hover */
-    box-shadow: 0 0 10px rgba(139, 92, 246, 0.2); /* Subtle purple glow */
+    border-color: #A78BFA;
+    box-shadow: 0 0 10px rgba(139, 92, 246, 0.2);
     transform: translateY(-3px);
 }
 
-/* Desktop specific adjustments for timeline (md breakpoint and up) */
+/* Desktop adjustments for Blog Posts Timeline */
 @media (min-width: 768px) {
     .timeline-line {
-        left: 50%; /* Center the line for desktop */
+        left: 50%;
     }
-
     .timeline-entry {
-        justify-content: space-between; /* Allow alternating left/right */
-        width: 100%; /* Full width for positioning */
+        justify-content: space-between;
+        width: 100%;
     }
-
     .timeline-circle {
-        left: 50%; /* Center circle on the line */
-        transform: translate(-50%, -50%); /* Center precisely */
+        left: 50%;
+        transform: translate(-50%, -50%);
     }
-
     .timeline-card {
-        width: calc(50% - 40px); /* Half width minus space for circle */
-        margin-left: 0; /* Reset margin */
-        position: relative; /* For proper positioning */
+        width: calc(50% - 40px);
+        margin-left: 0;
+        position: relative;
     }
-
-    /* Alternating left/right cards */
     .timeline-entry:nth-child(odd) .timeline-card {
-        margin-right: calc(50% + 40px); /* Push odd cards to the left */
+        margin-right: calc(50% + 40px);
         text-align: right;
     }
-
     .timeline-entry:nth-child(even) .timeline-card {
-        margin-left: calc(50% + 40px); /* Push even cards to the right */
+        margin-left: calc(50% + 40px);
         text-align: left;
     }
-
-    /* Adjust text alignment for content within cards */
     .timeline-entry:nth-child(odd) .timeline-card h3,
     .timeline-entry:nth-child(odd) .timeline-card p,
     .timeline-entry:nth-child(odd) .timeline-card a,
     .timeline-entry:nth-child(odd) .timeline-card span {
         text-align: right;
     }
-
     .timeline-entry:nth-child(even) .timeline-card h3,
     .timeline-entry:nth-child(even) .timeline-card p,
     .timeline-entry:nth-child(even) .timeline-card a,
     .timeline-entry:nth-child(even) .timeline-card span {
+        text-align: left;
+    }
+}
+
+/* Mobile adjustments for Blog Posts Timeline */
+@media (max-width: 767px) {
+    .wrap {
+        padding: 0 1rem;
+    }
+    .timeline-line {
+        left: 20px;
+    }
+    .timeline-entry {
+        flex-direction: row;
+        justify-content: flex-start;
+        width: 100%;
+    }
+    .timeline-circle {
+        left: 10px; /* Adjust to align with the line */
+        transform: translate(-50%, -50%);
+    }
+    .timeline-card {
+        width: calc(100% - 60px); /* Adjust width to make space for circle/line */
+        margin-left: 60px; /* Push card to the right of the line/circle */
+        text-align: left; /* Ensure text is left-aligned on mobile */
+    }
+}
+
+
+/* Career Timeline (About Page) - Specific Styles */
+.career-timeline-line {
+    /* Mobile: Line on the left */
+    left: 20px; /* Position of the line */
+    transform: translateX(-1px); /* Fine-tune alignment */
+    width: 2px; /* Thickness of the line */
+}
+
+.career-timeline-entry {
+    display: flex;
+    align-items: flex-start; /* Align items to the top */
+    margin-bottom: 3rem; /* Space between items */
+    position: relative;
+    padding-left: 60px; /* Space for the line and date circle on mobile */
+}
+
+.career-timeline-date {
+    position: absolute;
+    top: 0; /* Position at the top of the entry */
+    left: 20px; /* Align with the line on mobile */
+    transform: translate(-50%, -50%); /* Center vertically on the line */
+    z-index: 20; /* Ensure it's above the line and card */
+    background-color: #8B5CF6; /* Purple background for date circle */
+    border: 2px solid #0F172A; /* Dark border to stand out from line */
+    border-radius: 9999px; /* rounded-full */
+    padding: 0.5rem 1rem; /* px-4 py-2 */
+    font-size: 0.875rem; /* text-sm */
+    font-weight: 600;
+    color: white;
+    white-space: nowrap; /* Prevent date from wrapping */
+}
+
+.career-timeline-card {
+    background-color: #1E293B; /* Darker gray for card */
+    border: 1px solid #475569; /* Slate 600 border */
+    border-radius: 0.5rem; /* rounded-lg */
+    padding: 1.5rem; /* p-6 */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* subtle shadow */
+    width: 100%; /* Full width minus padding on mobile */
+    margin-left: 0; /* No margin on mobile */
+    transition: all 0.3s ease-in-out;
+}
+
+/* Desktop specific alternating layout for Career Timeline */
+@media (min-width: 768px) {
+    .career-timeline-line {
+        left: 50%; /* Center the line for desktop */
+    }
+
+    .career-timeline-entry {
+        justify-content: space-between; /* Allow alternating left/right */
+        width: 100%; /* Full width for positioning */
+        padding-left: 0; /* Remove mobile padding */
+    }
+
+    .career-timeline-date {
+        left: 50%; /* Center date circle on the line */
+        transform: translate(-50%, -50%); /* Center precisely */
+    }
+
+    .career-timeline-entry:nth-child(odd) .career-timeline-card {
+        width: calc(50% - 60px); /* Half width minus space for date circle */
+        margin-right: 60px; /* Push odd cards to the left */
+        margin-left: 0;
+        text-align: right;
+    }
+
+    .career-timeline-entry:nth-child(even) .career-timeline-card {
+        width: calc(50% - 60px); /* Half width minus space for date circle */
+        margin-left: 60px; /* Push even cards to the right */
+        margin-right: 0;
+        text-align: left;
+    }
+
+    /* Adjust text alignment for content within cards */
+    .career-timeline-entry:nth-child(odd) .career-timeline-card h3,
+    .career-timeline-entry:nth-child(odd) .career-timeline-card p {
+        text-align: right;
+    }
+
+    .career-timeline-entry:nth-child(even) .career-timeline-card h3,
+    .career-timeline-entry:nth-child(even) .career-timeline-card p {
         text-align: left;
     }
 }
