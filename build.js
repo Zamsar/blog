@@ -14,6 +14,7 @@ const publicDir = path.join(__dirname, 'public'); // This is the OUTPUT director
 const publicPostsDir = path.join(publicDir, 'posts');
 const publicDataDir = path.join(publicDir, 'data');
 const publicImagesDir = path.join(publicDir, 'images');
+const includesDir = path.join(__dirname, '_includes'); // New includes directory
 
 async function buildSite() {
     console.log('Starting site build...');
@@ -28,21 +29,25 @@ async function buildSite() {
     await fs.ensureDir(publicImagesDir);
     console.log('Cleaned and prepared public directory structure.');
 
-    // 2. Copy core static assets from the ROOT of the repository into the public/ OUTPUT directory
-    const sourceIndexHtml = path.join(__dirname, 'index.html');
+    // 2. Read reusable header HTML
+    const headerHtml = await fs.readFile(path.join(includesDir, 'header.html'), 'utf8');
+    console.log('Read header include file.');
+
+    // 3. Copy core static assets from the ROOT of the repository into the public/ OUTPUT directory
+    const sourceIndexHtmlTemplate = path.join(__dirname, 'index.html');
     const sourceCssDir = path.join(__dirname, 'css');
     const sourceJsDir = path.join(__dirname, 'js');
     const sourceProfileImg = path.join(__dirname, 'images', 'profile.jpg');
 
     console.log(`Attempting to copy:`);
-    console.log(`  - Source index.html: ${sourceIndexHtml}`);
+    console.log(`  - Source index.html template: ${sourceIndexHtmlTemplate}`);
     console.log(`  - Source css/ directory: ${sourceCssDir}`);
     console.log(`  - Source js/ directory: ${sourceJsDir}`);
     console.log(`  - Source profile.jpg: ${sourceProfileImg}`);
 
     // Verify source files/directories exist before copying
-    if (!(await fs.pathExists(sourceIndexHtml))) {
-        throw new Error(`Source file not found: ${sourceIndexHtml}. Ensure index.html is at the root of your repository.`);
+    if (!(await fs.pathExists(sourceIndexHtmlTemplate))) {
+        throw new Error(`Source file not found: ${sourceIndexHtmlTemplate}. Ensure index.html is at the root of your repository.`);
     }
     if (!(await fs.pathExists(sourceCssDir))) {
         throw new Error(`Source directory not found: ${sourceCssDir}. Ensure css/ is at the root of your repository.`);
@@ -54,7 +59,11 @@ async function buildSite() {
         throw new Error(`Source file not found: ${sourceProfileImg}. Ensure images/profile.jpg exists at the root of your repository.`);
     }
 
-    await fs.copy(sourceIndexHtml, path.join(publicDir, 'index.html'));
+    // Read index.html content, inject header, then write to public/index.html
+    let indexHtmlContent = await fs.readFile(sourceIndexHtmlTemplate, 'utf8');
+    indexHtmlContent = indexHtmlContent.replace('<!-- HEADER_PLACEHOLDER -->', headerHtml);
+    await fs.writeFile(path.join(publicDir, 'index.html'), indexHtmlContent);
+
     await fs.copy(sourceCssDir, path.join(publicDir, 'css'));
     await fs.copy(sourceJsDir, path.join(publicDir, 'js'));
     await fs.copy(sourceProfileImg, path.join(publicImagesDir, 'profile.jpg'));
@@ -63,7 +72,7 @@ async function buildSite() {
     // Array to store metadata for all posts
     const allPostsMetadata = [];
 
-    // 3. Process each Markdown post
+    // 4. Process each Markdown post
     const markdownFiles = await fs.readdir(contentPostsDir);
     console.log(`Found ${markdownFiles.length} markdown files in ${contentPostsDir}`);
 
@@ -74,23 +83,26 @@ async function buildSite() {
             const outputHtmlFilePath = path.join(publicPostsDir, `${slug}.html`);
 
             const fileContent = await fs.readFile(markdownFilePath, 'utf8');
-            const { data, content } = matter(fileContent);
+            const { data, content } = matter(fileContent); // Parse front matter and content
 
+            // Validate essential front matter
             if (!data.title || !data.date || !data.description) {
                 console.warn(`Skipping ${file}: Missing required front matter (title, date, or description).`);
                 continue;
             }
 
+            // Add post metadata to array
             allPostsMetadata.push({
-                id: allPostsMetadata.length + 1,
+                id: allPostsMetadata.length + 1, // Simple ID generation
                 title: data.title,
                 description: data.description,
                 date: data.date,
                 slug: slug
             });
 
-            const htmlContent = md.render(content);
+            const htmlContent = md.render(content); // Render markdown body to HTML
 
+            // HTML template for individual post page - now also includes headerHtml
             const postPageHtml = `
 <!DOCTYPE html>
 <html lang="en">
@@ -156,16 +168,7 @@ async function buildSite() {
     </style>
 </head>
 <body class="min-h-screen flex flex-col bg-gray-950 text-gray-200">
-    <header class="bg-gray-900 text-white p-6 border-b border-purple-800 fixed w-full z-30">
-        <div class="container mx-auto flex justify-between items-center">
-            <a href="/" class="text-3xl md:text-4xl font-extrabold tracking-wide text-purple-400">Zamir.dev</a>
-            <nav class="space-x-4 md:space-x-6">
-                <a href="/#timeline" class="text-base md:text-lg font-medium text-gray-300 hover:text-purple-400 transition duration-200">Timeline</a>
-                <a href="/#about" class="text-base md:text-lg font-medium text-gray-300 hover:text-purple-400 transition duration-200">About</a>
-                <a href="/#contact" class="text-base md:text-lg font-medium text-gray-300 hover:text-purple-400 transition duration-200">Contact</a>
-            </nav>
-        </div>
-    </header>
+    ${headerHtml} <!-- Injected header -->
     <main class="flex-grow pt-24 container mx-auto px-4 py-16 max-w-4xl">
         <article class="bg-gray-900 p-8 md:p-12 rounded-lg shadow-xl border border-purple-800">
             <h1 class="text-4xl md:text-5xl font-bold mb-4 text-purple-400">${data.title}</h1>
@@ -192,7 +195,7 @@ async function buildSite() {
         }
     }
 
-    // 4. Sort posts metadata by date (most recent first) and write to JSON
+    // 5. Sort posts metadata by date (most recent first) and write to JSON
     allPostsMetadata.sort((a, b) => new Date(b.date) - new Date(a.date));
     await fs.writeJson(path.join(publicDataDir, 'posts.json'), allPostsMetadata);
     console.log('Generated posts.json metadata.');
