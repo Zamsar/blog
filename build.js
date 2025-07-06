@@ -29,21 +29,28 @@ async function buildSite() {
     await fs.ensureDir(publicImagesDir);
     console.log('Cleaned and prepared public directory structure.');
 
-    // 2. Read reusable header HTML
+    // 2. Read reusable header and footer HTML
     const headerHtml = await fs.readFile(path.join(includesDir, 'header.html'), 'utf8');
-    console.log('Read header include file.');
+    const footerHtml = await fs.readFile(path.join(includesDir, 'footer.html'), 'utf8');
+    console.log('Read header and footer include files.');
 
     // 3. Copy core static assets from the ROOT of the repository into the public/ OUTPUT directory
     const sourceIndexHtmlTemplate = path.join(__dirname, 'index.html');
     const sourceCssDir = path.join(__dirname, 'css');
     const sourceJsDir = path.join(__dirname, 'js');
     const sourceProfileImg = path.join(__dirname, 'images', 'profile.jpg');
+    const aboutTemplatePath = path.join(includesDir, 'about-template.html');
+    const allPostsTemplatePath = path.join(includesDir, 'all-posts-template.html');
+
 
     console.log(`Attempting to copy:`);
     console.log(`  - Source index.html template: ${sourceIndexHtmlTemplate}`);
     console.log(`  - Source css/ directory: ${sourceCssDir}`);
     console.log(`  - Source js/ directory: ${sourceJsDir}`);
     console.log(`  - Source profile.jpg: ${sourceProfileImg}`);
+    console.log(`  - About template: ${aboutTemplatePath}`);
+    console.log(`  - All Posts template: ${allPostsTemplatePath}`);
+
 
     // Verify source files/directories exist before copying
     if (!(await fs.pathExists(sourceIndexHtmlTemplate))) {
@@ -58,12 +65,28 @@ async function buildSite() {
     if (!(await fs.pathExists(sourceProfileImg))) {
         throw new Error(`Source file not found: ${sourceProfileImg}. Ensure images/profile.jpg exists at the root of your repository.`);
     }
+    if (!(await fs.pathExists(aboutTemplatePath))) {
+        throw new Error(`About template not found: ${aboutTemplatePath}.`);
+    }
+    if (!(await fs.pathExists(allPostsTemplatePath))) {
+        throw new Error(`All Posts template not found: ${allPostsTemplatePath}.`);
+    }
 
-    // Read index.html content, inject header, then write to public/index.html
+    // Process index.html
     let indexHtmlContent = await fs.readFile(sourceIndexHtmlTemplate, 'utf8');
     indexHtmlContent = indexHtmlContent.replace('<!-- HEADER_PLACEHOLDER -->', headerHtml);
+    indexHtmlContent = indexHtmlContent.replace('<!-- FOOTER_PLACEHOLDER -->', footerHtml);
     await fs.writeFile(path.join(publicDir, 'index.html'), indexHtmlContent);
+    console.log('Generated public/index.html');
 
+    // Process about.html
+    let aboutHtmlContent = await fs.readFile(aboutTemplatePath, 'utf8');
+    aboutHtmlContent = aboutHtmlContent.replace('<!-- HEADER_PLACEHOLDER -->', headerHtml);
+    aboutHtmlContent = aboutHtmlContent.replace('<!-- FOOTER_PLACEHOLDER -->', footerHtml);
+    await fs.writeFile(path.join(publicDir, 'about.html'), aboutHtmlContent);
+    console.log('Generated public/about.html');
+
+    // Copy CSS, JS, and Image
     await fs.copy(sourceCssDir, path.join(publicDir, 'css'));
     await fs.copy(sourceJsDir, path.join(publicDir, 'js'));
     await fs.copy(sourceProfileImg, path.join(publicImagesDir, 'profile.jpg'));
@@ -86,9 +109,13 @@ async function buildSite() {
             const { data, content } = matter(fileContent); // Parse front matter and content
 
             // Validate essential front matter
-            if (!data.title || !data.date || !data.description) {
-                console.warn(`Skipping ${file}: Missing required front matter (title, date, or description).`);
+            if (!data.title || !data.date || !data.description || !data.slug) {
+                console.warn(`Skipping ${file}: Missing required front matter (title, date, description, or slug).`);
                 continue;
+            }
+            if (data.slug !== slug) {
+                console.warn(`Slug mismatch in ${file}: Front matter slug '${data.slug}' does not match filename slug '${slug}'. Using filename slug.`);
+                data.slug = slug; // Override with filename slug for consistency
             }
 
             // Add post metadata to array
@@ -97,12 +124,12 @@ async function buildSite() {
                 title: data.title,
                 description: data.description,
                 date: data.date,
-                slug: slug
+                slug: data.slug
             });
 
             const htmlContent = md.render(content); // Render markdown body to HTML
 
-            // HTML template for individual post page - now also includes headerHtml
+            // HTML template for individual post page - now also includes headerHtml and footerHtml
             const postPageHtml = `
 <!DOCTYPE html>
 <html lang="en">
@@ -178,15 +205,7 @@ async function buildSite() {
             </div>
         </article>
     </main>
-    <footer class="bg-gray-900 text-gray-400 py-10 px-4 mt-16 rounded-t-2xl shadow-inner border-t border-purple-800">
-        <div class="container mx-auto flex flex-col md:flex-row justify-between items-center text-center md:text-left">
-            <p class="text-md mb-4 md:mb-0">&copy; 2025 Zamir. All rights reserved.</p>
-            <div class="flex space-x-8">
-                <a href="#" class="text-gray-400 hover:text-purple-400 transition duration-200 text-sm">Privacy</a>
-                <a href="#" class="text-gray-400 hover:text-purple-400 transition duration-200 text-sm">Terms</a>
-            </div>
-        </div>
-    </footer>
+    ${footerHtml} <!-- Injected footer -->
 </body>
 </html>
             `;
@@ -199,6 +218,13 @@ async function buildSite() {
     allPostsMetadata.sort((a, b) => new Date(b.date) - new Date(a.date));
     await fs.writeJson(path.join(publicDataDir, 'posts.json'), allPostsMetadata);
     console.log('Generated posts.json metadata.');
+
+    // 6. Process all-posts.html
+    let allPostsHtmlContent = await fs.readFile(allPostsTemplatePath, 'utf8');
+    allPostsHtmlContent = allPostsHtmlContent.replace('<!-- HEADER_PLACEHOLDER -->', headerHtml);
+    allPostsHtmlContent = allPostsHtmlContent.replace('<!-- FOOTER_PLACEHOLDER -->', footerHtml);
+    await fs.writeFile(path.join(publicDir, 'all-posts.html'), allPostsHtmlContent);
+    console.log('Generated public/all-posts.html');
 
     console.log('Site build complete.');
 }

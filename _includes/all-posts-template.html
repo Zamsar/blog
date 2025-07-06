@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Posts - Zamir.dev</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/style.css">
+    <style>
+        /* Specific styles for the all-posts page if needed, or reuse main styles */
+        .all-posts-grid {
+            display: grid;
+            grid-template-columns: repeat(1, minmax(0, 1fr));
+            gap: 2.5rem; /* gap-10 */
+        }
+        @media (min-width: 768px) {
+            .all-posts-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+        }
+        @media (min-width: 1024px) {
+            .all-posts-grid {
+                grid-template-columns: repeat(3, minmax(0, 1fr));
+            }
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col bg-gray-950 text-gray-200">
+
+    <!-- HEADER_PLACEHOLDER -->
+
+    <main class="flex-grow pt-24 container mx-auto px-4 py-16">
+        <h1 class="text-4xl md:text-5xl font-bold text-center mb-16 text-gray-100 text-purple-400">All Blog Posts</h1>
+        <div id="all-posts-grid" class="all-posts-grid">
+            <!-- All posts will be injected here by JavaScript -->
+        </div>
+    </main>
+
+    <!-- FOOTER_PLACEHOLDER -->
+
+    <script src="/js/script.js"></script>
+</body>
+</html>
