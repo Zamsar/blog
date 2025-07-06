@@ -1,5 +1,5 @@
 ---
-title: Azure Functions: API Integration
+title: Azure Functions API Integration
 description: Serverless APIs. Contact form. Backend logic.
 date: 2025-06-25
 slug: functions-api-integration
