@@ -1,36 +1,63 @@
 const fs = require('fs-extra');
 const path = require('path');
 const MarkdownIt = require('markdown-it');
-const matter = require('gray-matter'); // For front matter parsing
+const matter = require('gray-matter');
 
 const md = new MarkdownIt({
-    html: true, // Enable HTML tags in source
-    linkify: true, // Autoconvert URL-like texts to links
-    typographer: true // Enable some typographic replacements
+    html: true,
+    linkify: true,
+    typographer: true
 });
 
 const contentPostsDir = path.join(__dirname, 'content', 'posts');
-const publicDir = path.join(__dirname, 'public');
+const publicDir = path.join(__dirname, 'public'); // This is the OUTPUT directory
 const publicPostsDir = path.join(publicDir, 'posts');
 const publicDataDir = path.join(publicDir, 'data');
 const publicImagesDir = path.join(publicDir, 'images');
 
 async function buildSite() {
     console.log('Starting site build...');
+    console.log(`Current working directory (process.cwd()): ${process.cwd()}`);
+    console.log(`__dirname (build.js location): ${__dirname}`);
 
-    // 1. Clean and prepare public directory
+    // 1. Clean and prepare public directory (the output folder)
+    console.log(`Ensuring public output directory at: ${publicDir}`);
     await fs.emptyDir(publicDir);
     await fs.ensureDir(publicPostsDir);
     await fs.ensureDir(publicDataDir);
     await fs.ensureDir(publicImagesDir);
     console.log('Cleaned and prepared public directory structure.');
 
-    // 2. Copy core static assets (index.html, css/, js/, images/) into public/
-    await fs.copy(path.join(__dirname, 'public', 'index.html'), path.join(publicDir, 'index.html'));
-    await fs.copy(path.join(__dirname, 'public', 'css'), path.join(publicDir, 'css'));
-    await fs.copy(path.join(__dirname, 'public', 'js'), path.join(publicDir, 'js'));
-    // Copy the profile image
-    await fs.copy(path.join(__dirname, 'images', 'profile.jpg'), path.join(publicImagesDir, 'profile.jpg'));
+    // 2. Copy core static assets from the ROOT of the repository into the public/ OUTPUT directory
+    const sourceIndexHtml = path.join(__dirname, 'index.html');
+    const sourceCssDir = path.join(__dirname, 'css');
+    const sourceJsDir = path.join(__dirname, 'js');
+    const sourceProfileImg = path.join(__dirname, 'images', 'profile.jpg');
+
+    console.log(`Attempting to copy:`);
+    console.log(`  - Source index.html: ${sourceIndexHtml}`);
+    console.log(`  - Source css/ directory: ${sourceCssDir}`);
+    console.log(`  - Source js/ directory: ${sourceJsDir}`);
+    console.log(`  - Source profile.jpg: ${sourceProfileImg}`);
+
+    // Verify source files/directories exist before copying
+    if (!(await fs.pathExists(sourceIndexHtml))) {
+        throw new Error(`Source file not found: ${sourceIndexHtml}. Ensure index.html is at the root of your repository.`);
+    }
+    if (!(await fs.pathExists(sourceCssDir))) {
+        throw new Error(`Source directory not found: ${sourceCssDir}. Ensure css/ is at the root of your repository.`);
+    }
+    if (!(await fs.pathExists(sourceJsDir))) {
+        throw new Error(`Source directory not found: ${sourceJsDir}. Ensure js/ is at the root of your repository.`);
+    }
+    if (!(await fs.pathExists(sourceProfileImg))) {
+        throw new Error(`Source file not found: ${sourceProfileImg}. Ensure images/profile.jpg exists at the root of your repository.`);
+    }
+
+    await fs.copy(sourceIndexHtml, path.join(publicDir, 'index.html'));
+    await fs.copy(sourceCssDir, path.join(publicDir, 'css'));
+    await fs.copy(sourceJsDir, path.join(publicDir, 'js'));
+    await fs.copy(sourceProfileImg, path.join(publicImagesDir, 'profile.jpg'));
     console.log('Copied core static assets and profile image.');
 
     // Array to store metadata for all posts
@@ -38,6 +65,7 @@ async function buildSite() {
 
     // 3. Process each Markdown post
     const markdownFiles = await fs.readdir(contentPostsDir);
+    console.log(`Found ${markdownFiles.length} markdown files in ${contentPostsDir}`);
 
     for (const file of markdownFiles) {
         if (path.extname(file) === '.md') {
@@ -46,26 +74,23 @@ async function buildSite() {
             const outputHtmlFilePath = path.join(publicPostsDir, `${slug}.html`);
 
             const fileContent = await fs.readFile(markdownFilePath, 'utf8');
-            const { data, content } = matter(fileContent); // Parse front matter and content
+            const { data, content } = matter(fileContent);
 
-            // Validate essential front matter
             if (!data.title || !data.date || !data.description) {
                 console.warn(`Skipping ${file}: Missing required front matter (title, date, or description).`);
                 continue;
             }
 
-            // Add post metadata to array
             allPostsMetadata.push({
-                id: allPostsMetadata.length + 1, // Simple ID generation
+                id: allPostsMetadata.length + 1,
                 title: data.title,
                 description: data.description,
                 date: data.date,
                 slug: slug
             });
 
-            const htmlContent = md.render(content); // Render markdown body to HTML
+            const htmlContent = md.render(content);
 
-            // Basic HTML template for individual post page
             const postPageHtml = `
 <!DOCTYPE html>
 <html lang="en">
