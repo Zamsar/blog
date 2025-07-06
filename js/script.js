@@ -17,22 +17,21 @@ async function loadPosts() {
         timelineContent.innerHTML = ''; // Clear any existing content
 
         recentPosts.forEach((post, index) => {
-            const isEven = index % 2 === 0; // For desktop alternating layout
-            const timelineItem = document.createElement('div');
-            timelineItem.className = `timeline-item mb-8 flex items-center w-full`; // Base classes
+            // Determine if the item should be on the left or right side for desktop view
+            // For mobile, all will stack on the left due to CSS
+            const isOdd = index % 2 !== 0; // Use odd/even for alternating desktop layout
 
-            // Determine desktop alignment
-            const desktopAlignmentClass = isEven ? 'md:justify-end' : 'md:flex-row-reverse md:justify-start';
+            const timelineItem = document.createElement('div');
+            timelineItem.className = `timeline-item timeline-entry w-full`; // Base classes for animation and flex container
 
             timelineItem.innerHTML = `
-                <div class="order-1 w-full md:w-5/12 ${desktopAlignmentClass}"></div>
-                <div class="z-20 flex items-center order-1 bg-purple-700 shadow-xl w-8 h-8 rounded-full timeline-circle">
-                    <h1 class="mx-auto font-semibold text-lg text-white">${post.id}</h1>
+                <div class="timeline-circle">
+                    <h1 class="font-semibold text-lg text-white">${index + 1}</h1>
                 </div>
-                <div class="order-1 bg-gray-800 rounded-lg shadow-xl w-full md:w-5/12 px-6 py-4 border border-purple-600 hover:border-purple-400 transition duration-300 timeline-item-container ${isEven ? 'right-aligned' : 'left-aligned'}">
+                <div class="timeline-card">
                     <h3 class="mb-3 font-bold text-gray-100 text-xl">${post.title}</h3>
-                    <p class="text-sm leading-snug tracking-wide text-gray-300 text-opacity-100">${post.description}</p>
-                    <a href="/posts/${post.slug}.html" class="mt-4 inline-block text-purple-500 hover:text-purple-300 font-medium text-sm transition-colors duration-200">
+                    <p class="text-sm leading-snug tracking-wide text-gray-300 text-opacity-100 mb-2">${post.description}</p>
+                    <a href="/posts/${post.slug}.html" class="inline-block text-purple-500 hover:text-purple-300 font-medium text-sm transition-colors duration-200">
                         Read More &rarr;
                     </a>
                     <span class="block text-xs text-gray-500 mt-2">${new Date(post.date).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' })}</span>
