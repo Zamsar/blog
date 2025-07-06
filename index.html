@@ -15,7 +15,17 @@
 </head>
 <body class="min-h-screen flex flex-col bg-gray-950 text-gray-200">
 
-    <!-- HEADER_PLACEHOLDER -->
+    <!-- Header -->
+    <header class="bg-gray-900 text-white p-6 border-b border-purple-800 fixed w-full z-30">
+        <div class="container mx-auto flex justify-between items-center">
+            <a href="/" class="text-3xl md:text-4xl font-extrabold tracking-wide text-purple-400">Zamir.dev</a>
+            <nav class="space-x-4 md:space-x-6">
+                <a href="/#timeline" class="text-base md:text-lg font-medium text-gray-300 hover:text-purple-400 transition duration-200">Timeline</a>
+                <a href="/#about" class="text-base md:text-lg font-medium text-gray-300 hover:text-purple-400 transition duration-200">About</a>
+                <a href="/#contact" class="text-base md:text-lg font-medium text-gray-300 hover:text-purple-400 transition duration-200">Contact</a>
+            </nav>
+        </div>
+    </header>
 
     <!-- Main Content Area -->
     <main class="flex-grow pt-24"> <!-- Added pt-24 to offset fixed header -->
@@ -34,11 +44,11 @@
 
         <!-- Timeline Section -->
         <section id="timeline" class="container mx-auto px-4 py-16">
-            <h2 class="text-4xl md:text-5xl font-bold text-center mb-16 text-gray-100">My Journey</h2>
+            <h2 class="text-4xl md:text-5xl font-bold text-center mb-16 text-gray-100">Blog Posts</h2>
 
             <div class="relative wrap overflow-hidden p-10 h-full">
-                <!-- Timeline vertical line (desktop) -->
-                <div class="border-2 absolute border-opacity-20 border-purple-700 h-full border-l-2 timeline-line"></div>
+                <!-- Timeline vertical line -->
+                <div class="absolute border-opacity-20 border-purple-700 h-full border-l-2 timeline-line"></div>
                 
                 <!-- Posts will be injected here by JavaScript -->
                 <div id="timeline-content" class="w-full">
