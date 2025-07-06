@@ -1,5 +1,5 @@
 ---
-title: Azure SWA: Initial Setup
+title: Azure SWA Initial Setup
 description: Static Web Apps. Fast CI/CD. Live deployment.
 date: 2025-07-01
 slug: azure-swa-setup
