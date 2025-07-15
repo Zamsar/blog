@@ -11,95 +11,7 @@
     <link rel="stylesheet" href="/css/style.css">
     <style>
         /* Specific styles for the about page timeline */
-        .career-timeline-line {
-            left: 50%; /* Center line for desktop */
-            transform: translateX(-1px);
-            width: 2px;
-        }
-
-        .career-timeline-entry {
-            display: flex;
-            align-items: flex-start; /* Align items to the top */
-            margin-bottom: 3rem; /* Space between items */
-            position: relative;
-        }
-
-        .career-timeline-date {
-            position: absolute;
-            top: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            z-index: 20;
-            background-color: #8B5CF6; /* Purple background for date circle */
-            border: 2px solid #0F172A; /* Dark border */
-            border-radius: 9999px; /* rounded-full */
-            padding: 0.5rem 1rem; /* px-4 py-2 */
-            font-size: 0.875rem; /* text-sm */
-            font-weight: 600;
-            color: white;
-            white-space: nowrap; /* Prevent date from wrapping */
-        }
-
-        .career-timeline-card {
-            background-color: #1E293B; /* Darker gray for card */
-            border: 1px solid #475569; /* Slate 600 border */
-            border-radius: 0.5rem; /* rounded-lg */
-            padding: 1.5rem; /* p-6 */
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* subtle shadow */
-            width: calc(50% - 60px); /* Half width minus space for date circle */
-            position: relative;
-        }
-
-        /* Desktop specific alternating layout */
-        @media (min-width: 768px) {
-            .career-timeline-entry:nth-child(odd) {
-                justify-content: flex-start;
-            }
-            .career-timeline-entry:nth-child(even) {
-                justify-content: flex-end;
-            }
-
-            .career-timeline-entry:nth-child(odd) .career-timeline-card {
-                margin-right: 60px; /* Space from center line */
-                margin-left: 0;
-                text-align: right;
-            }
-            .career-timeline-entry:nth-child(even) .career-timeline-card {
-                margin-left: 60px; /* Space from center line */
-                margin-right: 0;
-                text-align: left;
-            }
-
-            .career-timeline-entry:nth-child(odd) .career-timeline-date {
-                left: 50%;
-                transform: translateX(-50%);
-            }
-            .career-timeline-entry:nth-child(even) .career-timeline-date {
-                left: 50%;
-                transform: translateX(-50%);
-            }
-        }
-
-        /* Mobile adjustments for career timeline */
-        @media (max-width: 767px) {
-            .career-timeline-line {
-                left: 20px; /* Align line to the left */
-            }
-            .career-timeline-entry {
-                flex-direction: row;
-                justify-content: flex-start;
-                padding-left: 60px; /* Space for line and date circle */
-            }
-            .career-timeline-date {
-                left: 20px; /* Align date circle with the line */
-                top: 0; /* Position at the top of the card */
-                transform: translate(-50%, -50%);
-            }
-            .career-timeline-card {
-                width: 100%; /* Full width minus padding on mobile */
-                margin-left: 0; /* No left margin */
-            }
-        }
+        /* These will be updated in style.css for better organization */
     </style>
 </head>
 <body class="min-h-screen flex flex-col bg-gray-950 text-gray-200">
@@ -141,7 +53,7 @@
                         <p class="text-base leading-snug tracking-wide text-gray-300">
                             Experience with Domain Name System (DNS), Cloud Services, and other core cloud infrastructure tasks.
                         </p>
-                    </p>
+                    </div>
                 </div>
 
                 <!-- Career Timeline Item 3: Cloud Consultant -->
